@@ -6,6 +6,8 @@
 
 #include "custom_status_screen.h"
 
+#include "widgets/custom_idle_image.h"
+
 #if CONFIG_DONGLE_SCREEN_OUTPUT_ACTIVE
 #include "widgets/output_status.h"
 static struct zmk_widget_output_status output_status_widget;
@@ -50,6 +52,10 @@ lv_obj_t *zmk_display_status_screen()
     lv_style_set_text_letter_space(&global_style, 1);
     lv_style_set_text_line_space(&global_style, 1);
     lv_obj_add_style(screen, &global_style, LV_PART_MAIN);
+
+#if CONFIG_DONGLE_SCREEN_IDLE_IMAGE
+    custom_idle_image_init(screen);
+#endif
 
 #if CONFIG_DONGLE_SCREEN_OUTPUT_ACTIVE
     zmk_widget_output_status_init(&output_status_widget, screen);
