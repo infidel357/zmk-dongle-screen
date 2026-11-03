@@ -261,4 +261,4 @@ const lv_img_dsc_t idle_face = {
   .header.h = 240,
   .data_size = 8408,
   .data = idle_face_map,
-};
+}; 
