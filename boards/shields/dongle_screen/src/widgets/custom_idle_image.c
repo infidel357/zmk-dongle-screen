@@ -86,7 +86,7 @@ void custom_idle_image_init(lv_obj_t *parent)
     lv_img_set_src(idle_image_obj, &idle_face);
     
     /* Сдвигаем картинку на 2 пикселя вверх, чтобы убрать артефакт снизу */
-    lv_obj_align(idle_image_obj, LV_ALIGN_CENTER, 0, -2);
+    lv_obj_align(idle_image_obj, LV_ALIGN_CENTER, 0, 10);
     
     /* Убираем возможность прокрутки, чтобы не было полос */
     lv_obj_clear_flag(idle_image_obj, LV_OBJ_FLAG_SCROLLABLE);
