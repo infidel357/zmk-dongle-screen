@@ -86,6 +86,22 @@ config DONGLE_SCREEN_IDLE_TIMEOUT_S
     help
       Time in seconds after which the screen turns off when idle. 0 = never off.
 
+config DONGLE_SCREEN_IDLE_IMAGE
+    bool "Show custom image before blanking the display"
+    default n
+    help
+      When enabled, a custom LVGL image is shown after the idle timeout.
+      The display is blanked only after an additional delay.
+
+config DONGLE_SCREEN_IDLE_IMAGE_BLANK_DELAY_S
+    int "Seconds to show the idle image before blanking the display"
+    default 40
+    range 1 3600
+    depends on DONGLE_SCREEN_IDLE_IMAGE
+    help
+      Additional time in seconds during which the idle image remains visible
+      before the display is turned off.
+
 config DONGLE_SCREEN_MAX_BRIGHTNESS
     int "Maximum screen brightness (1-100)"
     default 80
@@ -131,7 +147,7 @@ config DONGLE_SCREEN_TOGGLE_KEYCODE
     int "Keycode for toggle screen off/on"
     default 113  # KC_F22
     help
-      Keycode that toggles the screen off and on (default: F22).
+      Keycode that toggles the screen off/on (default: F22).
 
 config DONGLE_SCREEN_BRIGHTNESS_STEP
     int "Step for brightness adjustment with keyboard"
@@ -209,6 +225,7 @@ config DONGLE_SCREEN_BRIGHTNESS_MODIFIER
     range -99 99
     help
       The modifier to start the dongle with. Useful if you found a modifier comfortable for you. Espacially for ambient light. Otherwise no need to change.
+
 config DONGLE_SCREEN_SYSTEM_ICON
     int "The icon to display when the 'LGUI'/'RGUI' is pressed. (0: macOS, 1: Linux, 2: Windows)"
     default 0
@@ -216,4 +233,5 @@ config DONGLE_SCREEN_SYSTEM_ICON
     help
         The icon to display when the 'LGUI'/'RGUI' is pressed. Can be used to better match the Mod Widget to the underlying system.
         (0: macOS, 1: Linux, 2: Windows)
+
 endif
