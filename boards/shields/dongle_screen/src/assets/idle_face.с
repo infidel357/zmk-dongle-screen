@@ -1,4 +1,4 @@
-```c
+c
 #ifdef __has_include
     #if __has_include("lvgl.h")
         #ifndef LV_LVGL_H_INCLUDE_SIMPLE
@@ -263,4 +263,3 @@ const lv_img_dsc_t idle_face = {
   .data_size = 8408,
   .data = idle_face_map,
 };
-```
