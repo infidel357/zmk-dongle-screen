@@ -465,7 +465,10 @@ void screen_idle_thread(void)
         if (screen_on || off_through_modifier) {
 #if CONFIG_DONGLE_SCREEN_IDLE_IMAGE
             if (elapsed >= SCREEN_IDLE_TOTAL_TIMEOUT_MS) {
-                custom_idle_image_set_visible(false);
+                /*
+                 * Keep the idle image visible while the backlight
+                 * fades out. Activity will request hiding it.
+                 */
                 screen_set_on_locked(false);
                 off_through_modifier = false;
             } else if (elapsed >= SCREEN_IDLE_TIMEOUT_MS) {
@@ -491,10 +494,12 @@ void screen_idle_thread(void)
                 );
             }
 #endif
-        } else {
-            custom_idle_image_set_visible(false);
         }
 
+        /*
+         * Do not hide the image merely because screen_on is false:
+         * the backlight may still be fading out.
+         */
         k_mutex_unlock(&brightness_state_mutex);
 
         /*
